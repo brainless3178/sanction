@@ -1,0 +1,25 @@
+{
+    "name": "sss-token-cli",
+    "version": "1.0.0",
+    "bin": {
+        "sss": "dist/index.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "start": "ts-node src/index.ts"
+    },
+    "dependencies": {
+        "commander": "^11.1.0",
+        "ora": "^5.4.1",
+        "chalk": "^4.1.2",
+        "@solana/web3.js": "^1.95.8",
+        "@coral-xyz/anchor": "^0.30.1",
+        "@solana/spl-token": "^0.4.8",
+        "@types/node": "^25.3.0",
+        "@stbr/sss-token": "file:../sdk/typescript"
+    },
+    "devDependencies": {
+        "typescript": "^5.3.3",
+        "ts-node": "^10.9.2"
+    }
+}

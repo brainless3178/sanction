@@ -1,0 +1,27 @@
+[toolchain]
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+sss_token = "2rERwq2PwRJf38WUrbgkr8qHK1gxbCFmL6vz2jJKs9no"
+transfer_hook = "8q1UWafjPK3JuYwiqFcQcfVYzns8zAxsEzT33kokceJ"
+oracle_module = "Hx8AXzQd8eh5Z7VFTE6uRrk5Zm3WMTYLrMAFu61hbWj5"
+sss_private = "2tDW4FHJhSe1Pm3qsReDDDd228dzcGKpkuEkc7yJFxLv"
+
+[programs.devnet]
+sss_token = "2rERwq2PwRJf38WUrbgkr8qHK1gxbCFmL6vz2jJKs9no"
+transfer_hook = "8q1UWafjPK3JuYwiqFcQcfVYzns8zAxsEzT33kokceJ"
+oracle_module = "Hx8AXzQd8eh5Z7VFTE6uRrk5Zm3WMTYLrMAFu61hbWj5"
+sss_private = "2tDW4FHJhSe1Pm3qsReDDDd228dzcGKpkuEkc7yJFxLv"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "npx ts-node tests/integration/sss1-flow.ts && npx ts-node tests/integration/sss2-flow.ts"

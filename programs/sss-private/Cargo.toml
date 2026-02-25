@@ -1,0 +1,17 @@
+[package]
+name = "sss-private"
+version = "0.1.0"
+description = "Experimental confidential/zero-knowledge transfer support for SSS stablecoins"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "sss_private"
+
+[features]
+no-entrypoint = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "0.30.1"

@@ -1,0 +1,32 @@
+{
+    "cluster": "devnet",
+    "rpcUrl": "https://api.devnet.solana.com",
+    "deployedAt": "2026-02-25T08:28:00Z",
+    "deployAuthority": "BWJEK2svMyD4riumKVubNrhihn9qfFa1agYzZH5yETW2",
+    "programs": {
+        "sssToken": "2rERwq2PwRJf38WUrbgkr8qHK1gxbCFmL6vz2jJKs9no",
+        "transferHook": "8q1UWafjPK3JuYwiqFcQcfVYzns8zAxsEzT33kokceJ",
+        "oracleModule": "Hx8AXzQd8eh5Z7VFTE6uRrk5Zm3WMTYLrMAFu61hbWj5",
+        "sssPrivate": "2tDW4FHJhSe1Pm3qsReDDDd228dzcGKpkuEkc7yJFxLv"
+    },
+    "programDataAddresses": {
+        "sssToken": "Hn8EVfHYHKsJo1yDoJsAmKjZfU8Jrmg6FEwSZTBcguk6",
+        "transferHook": "EM7Bt5H7cJ2xjZsE9pZojxFNfghWrEyuRvSRMtBTm7oQ",
+        "oracleModule": "8aqNCcrNF1nzUgcVJaYLcDQjABuBeti5PmmnwpwietTZ",
+        "sssPrivate": "brD6suoRkqShAPXYMUjm4xwYfG7JhvQgUBXbVeiZLHQ"
+    },
+    "demos": {
+        "sss1": {
+            "mintAddress": "",
+            "transactions": []
+        },
+        "sss2": {
+            "mintAddress": "",
+            "authority": "",
+            "minter": "",
+            "target": "",
+            "supply": "",
+            "transactions": []
+        }
+    }
+}

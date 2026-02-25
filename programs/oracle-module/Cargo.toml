@@ -1,0 +1,17 @@
+[package]
+name = "oracle-module"
+version = "0.1.0"
+description = "Switchboard oracle price feed integration for SSS stablecoins"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "oracle_module"
+
+[features]
+no-entrypoint = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "0.30.1"

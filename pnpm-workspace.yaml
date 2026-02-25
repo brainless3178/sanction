@@ -1,0 +1,8 @@
+packages:
+  - "programs/*"
+  - "sdk/*"
+  - "cli"
+  - "backend/*"
+  - "tui"
+  - "frontend"
+  - "tests"

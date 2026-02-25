@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  # ===========================================
+  # Database
+  # ===========================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: sss-postgres
+    environment:
+      POSTGRES_DB: sss_token
+      POSTGRES_USER: sss
+      POSTGRES_PASSWORD: sss_secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/shared/src/db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U sss -d sss_token" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===========================================
+  # Indexer Service
+  # ===========================================
+  indexer:
+    build:
+      context: ./backend
+      dockerfile: indexer/Dockerfile
+    container_name: sss-indexer
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://sss:sss_secret@postgres:5432/sss_token
+      RPC_URL: ${RPC_URL:-https://api.devnet.solana.com}
+      RPC_WS_URL: ${RPC_WS_URL:-wss://api.devnet.solana.com}
+      PROGRAM_ID: ${PROGRAM_ID:-Sss1111111111111111111111111111111111111111}
+      LOG_LEVEL: info
+      SERVICE_NAME: indexer
+    restart: unless-stopped
+
+  # ===========================================
+  # Mint Service API
+  # ===========================================
+  mint-service:
+    build:
+      context: ./backend
+      dockerfile: mint-service/Dockerfile
+    container_name: sss-mint-service
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "3001:3001"
+    environment:
+      DATABASE_URL: postgresql://sss:sss_secret@postgres:5432/sss_token
+      PORT: 3001
+      HOST: 0.0.0.0
+      LOG_LEVEL: info
+      SERVICE_NAME: mint-service
+      API_KEY: ${API_KEY:-}
+      QUOTA_LIMIT: ${QUOTA_LIMIT:-1000000000000}
+    restart: unless-stopped
+
+  # ===========================================
+  # Compliance Service API
+  # ===========================================
+  compliance:
+    build:
+      context: ./backend
+      dockerfile: compliance/Dockerfile
+    container_name: sss-compliance
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "3002:3002"
+    environment:
+      DATABASE_URL: postgresql://sss:sss_secret@postgres:5432/sss_token
+      PORT: 3002
+      HOST: 0.0.0.0
+      LOG_LEVEL: info
+      SERVICE_NAME: compliance
+      SANCTIONS_API_URL: ${SANCTIONS_API_URL:-}
+      SANCTIONS_API_KEY: ${SANCTIONS_API_KEY:-}
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

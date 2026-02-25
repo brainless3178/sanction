@@ -1,0 +1,13 @@
+{
+  "name": "solana-stablecoin-standard",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "anchor build --no-idl",
+    "test": "anchor test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.3.3"
+  }
+}
