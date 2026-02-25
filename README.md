@@ -154,17 +154,17 @@ cd tests/fuzz/sss-token && cargo run
 │                          SOLANA BLOCKCHAIN                               │
 │                                                                          │
 │  ┌──────────────────┐  ┌──────────────────┐  ┌────────────────────────┐  │
-│  │   sss-token       │  │  transfer-hook   │  │   oracle-module        │  │
-│  │   (Core Program)  │←─│  (Blacklist      │  │   (Switchboard Price   │  │
-│  │                   │  │   Enforcement)   │  │    Feeds)              │  │
-│  │  • Initialize     │  └──────────────────┘  └────────────────────────┘  │
-│  │  • Mint / Burn    │                                                    │
-│  │  • Freeze / Thaw  │  ┌──────────────────┐                             │
-│  │  • Pause          │  │  sss-private     │                             │
-│  │  • Roles          │  │  (Confidential   │                             │
-│  │  • Blacklist      │  │   Transfers)     │                             │
-│  │  • Seize          │  └──────────────────┘                             │
-│  │  • Authority Xfer │                                                    │
+│  │   sss-token      │  │  transfer-hook   │  │   oracle-module        │  │
+│  │   (Core Program) │←─│  (Blacklist      │  │   (Switchboard Price   │  │
+│  │                  │  │   Enforcement)   │  │    Feeds)              │  │
+│  │  • Initialize    │  └──────────────────┘  └────────────────────────┘  │
+│  │  • Mint / Burn   │                                                    │
+│  │  • Freeze / Thaw │  ┌──────────────────┐                              │
+│  │  • Pause         │  │  sss-private     │                              │
+│  │  • Roles         │  │  (Confidential   │                              │
+│  │  • Blacklist     │  │   Transfers)     │                              │
+│  │  • Seize         │  └──────────────────┘                              │
+│  │  • Authority Xfe │                                                    │
 │  └──────────────────┘                                                    │
 └──────────────────────────────────────────────────────────────────────────┘
          ▲                          ▲                         ▲
@@ -173,27 +173,27 @@ cd tests/fuzz/sss-token && cargo run
 ┌────────┴──────────┐   ┌──────────┴──────────┐   ┌─────────┴────────────┐
 │   TypeScript SDK  │   │     CLI (sss)       │   │    React Frontend    │
 │  @stbr/sss-token  │   │  init, mint, burn,  │   │  Create / Manage /   │
-│                   │   │  freeze, pause,      │   │  Compliance Pages    │
-│                   │   │  status, supply,     │   │                      │
-│                   │   │  minters, blacklist  │   │                      │
+│                   │   │  freeze, pause,     │   │  Compliance Pages    │
+│                   │   │  status, supply,    │   │                      │
+│                   │   │  minters, blacklist │   │                      │
 └───────────────────┘   └─────────────────────┘   └──────────────────────┘
          │
          ▼
 ┌──────────────────────────────────────────────────────────────────────────┐
 │                          BACKEND SERVICES                                │
 │                                                                          │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌──────────────────────────┐  │
-│  │   Indexer        │  │  Mint Service   │  │   Compliance Service     │  │
-│  │   (Event Listener│  │  API (:3001)    │  │   API (:3002)            │  │
-│  │    + Parser)     │  │  POST /api/mint │  │   /api/blacklist/*       │  │
-│  └────────┬────────┘  └────────┬────────┘  │   /api/audit             │  │
-│           │                    │            │   /api/blacklist/screen   │  │
-│           ▼                    ▼            └──────────┬───────────────┘  │
-│  ┌─────────────────────────────────────────────────────────────────────┐  │
-│  │                     PostgreSQL (sss_token DB)                       │  │
-│  │  • mint_requests  • events  • blacklist  • webhooks  • processed_  │  │
-│  │                                                         slots      │  │
-│  └─────────────────────────────────────────────────────────────────────┘  │
+│  ┌─────────────────┐  ┌─────────────────┐   ┌──────────────────────────┐ │
+│  │   Indexer       │  │Mint Service     │   │   Compliance Service     │ │
+│  │  (Event Listener│  │  API (:3001)    │   │   API (:3002)            │ │
+│  │    + Parser)    │  │  POST /api/mint │   │   /api/blacklist/*       │ │
+│  └────────┬────────┘  └────────┬────────┘   │   /api/audit             │ │
+│           │                    │            │   /api/blacklist/screen  │ │
+│           ▼                    ▼            └──────────┬───────────────┘ │
+│  ┌─────────────────────────────────────────────────────────────────────┐ │
+│  │                     PostgreSQL (sss_token DB)                       │ │
+│  │  • mint_requests  • events  • blacklist  • webhooks  • processed_   │ │
+│  │                                                         slots       │ │
+│  └─────────────────────────────────────────────────────────────────────┘ │
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
